@@ -1,0 +1,13 @@
+; Sample ALP Program to add two numbers
+        START   2000H
+FIRST:  LDA     NUM1    ; Load first number
+        MOV     B, A    ; Move it to register B
+        LDA     NUM2    ; Load second number
+        ADD     B       ; Add B to A
+        STA     RESULT  ; Store result in memory
+        HLT            ; Halt the program
+
+NUM1:   DB      25H     ; First number
+NUM2:   DB      15H     ; Second number
+RESULT: DS      1       ; Reserve space for result
+        END

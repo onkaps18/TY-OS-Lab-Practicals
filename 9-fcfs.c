@@ -1,0 +1,90 @@
+#include <stdio.h>
+#define MAX_PROCESSES 100
+
+typedef struct {
+    int pid;
+    int arrival_time;
+    int burst_time;
+    int completion_time;
+    int turnaround_time;
+    int waiting_time;
+    int is_completed;
+}Process;
+
+void swap (Process* a, Process* b) {
+    Process temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void sort_by_arrival_time (Process* processes, int n) {
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (processes[j].arrival_time > processes[j+1].arrival_time) {
+                swap(&processes[j], &processes[j+1]);
+            }
+        }
+    }
+}
+
+void input_processes(Process processes[], int n) {
+    for (int i = 0; i < n; i++) {
+        processes[i].pid = i+1;
+        processes[i].is_completed = 0;
+        printf("Enter arrival time for process %d: ", i+1);
+        scanf("%d", &processes[i].arrival_time);
+        printf("Enter burst time for process %d: ", i+1);
+        scanf("%d", &processes[i].burst_time);
+    }
+}
+
+void print_table (Process* processes, int n) {
+    printf("\nProcess Table: \n");
+    printf("+---------+---------+---------+---------+---------+---------+\n");
+    printf("| Process | Arrival | Burst   | Comple  | TurnAr  | Waiting |\n");
+    printf("| ID      | time    | time    | time    | time    | time    |\n");
+    printf("+---------+---------+---------+---------+---------+---------+\n");
+    for (int i = 0; i < n; i++) {
+        printf("| %-7d | %-7d | %-7d | %-7d | %-7d | %-7d |\n", processes[i].pid,
+        processes[i].arrival_time, processes[i].burst_time, processes[i].completion_time,
+        processes[i].turnaround_time, processes[i].waiting_time);
+    }
+
+}
+
+void fcfs (Process* processes, int n) {
+    int current_time = 0; 
+    int schedule[MAX_PROCESSES * 2];
+    int timeline[MAX_PROCESSES * 2 + 1];
+    int schedule_index = 0;
+
+    sort_by_arrival_time(processes, n);
+
+    for (int i = 0; i < n; i++) {
+        if (processes[i].arrival_time > current_time) {
+            current_time = processes[i].arrival_time;
+        }
+        schedule[schedule_index] = processes[i].pid;
+        timeline[schedule_index] = current_time;
+        schedule_index++;
+        processes[i].is_completed = 1;
+        processes[i].completion_time = current_time + processes[i].burst_time;
+        processes[i].turnaround_time = processes[i].completion_time - processes[i].arrival_time;
+        processes[i].waiting_time = processes[i].turnaround_time - processes[i].burst_time;
+        current_time = processes[i].completion_time;
+    } 
+    timeline[schedule_index] = current_time;  
+    print_table(processes, n);
+}
+
+int main() {
+    Process processes[MAX_PROCESSES];
+    int n;
+    printf("Enter number of processes: ");
+    scanf("%d", &n);
+
+    input_processes(processes, n);
+    fcfs(processes, n);
+
+    return 0;
+}   

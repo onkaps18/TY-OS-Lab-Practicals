@@ -1,6 +1,15 @@
 3:
 	gcc ./3-matrix-operations.c -o ./main.out -lm
 
+4:
+	gcc ./4-rw-mutex.c -o ./main.out -lm
+
+5:
+	gcc ./5-pc-mutex.c -o ./main.out -lm
+
+6: 
+	gcc ./6-rw-semaphore.c -o ./main.out -lm
+
 7:
 	gcc ./7-pc-semaphore.c -o ./main.out -lm
 
@@ -11,7 +20,10 @@
 	gcc ./10-sjf-both.c -o ./main.out -lm 
 
 11:
-	gcc ./11-priority-both.c -o ./main.out -lm 
+	gcc ./11-priority-both.c -o ./main.out -lm
+
+12:
+	gcc ./12-round-robin.c -o ./main.out -lm
 
 15:
 	gcc ./15-fifo-page-fault.c -o ./main.out -lm 

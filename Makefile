@@ -22,6 +22,18 @@
 17: 
 	gcc ./17-optimal-page-fault.c -o ./main.out -lm
 
+18: 
+	gcc ./18-diskSch-fcfs.c -o ./main.out -lm
+
+19: 
+	gcc ./19-diskSch-sstf.c -o ./main.out -lm
+
+20: 
+	gcc ./20-diskSch-scan.c -o ./main.out -lm
+
+21: 
+	gcc ./21-diskSch-cscan.c -o ./main.out -lm
+
 24:
 	gcc ./24-copy-contents.c -o ./main.out -lm
 

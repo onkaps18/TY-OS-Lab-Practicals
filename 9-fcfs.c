@@ -38,6 +38,22 @@ void input_processes(Process processes[], int n) {
     }
 }
 
+void print_gantt_chart(int *schedule, int *timeline, int n) {
+    printf("\nGantt Chart:\n");
+
+    printf("\n|");
+    for (int i = 0; i < n; i++) {
+        printf(" P%-2d |", schedule[i]);
+    }
+
+    printf("\n");
+    for (int i = 0; i <= n; i++) {
+        printf("%-3d   ", timeline[i]);
+    }
+    printf("\n");
+
+}
+
 void print_table (Process* processes, int n) {
     printf("\nProcess Table: \n");
     printf("+---------+---------+---------+---------+---------+---------+\n");
@@ -49,6 +65,7 @@ void print_table (Process* processes, int n) {
         processes[i].arrival_time, processes[i].burst_time, processes[i].completion_time,
         processes[i].turnaround_time, processes[i].waiting_time);
     }
+    printf("+---------+---------+---------+---------+---------+---------+\n");
 
 }
 
@@ -75,6 +92,7 @@ void fcfs (Process* processes, int n) {
     } 
     timeline[schedule_index] = current_time;  
     print_table(processes, n);
+    print_gantt_chart(schedule, timeline, schedule_index);
 }
 
 int main() {
@@ -88,3 +106,16 @@ int main() {
 
     return 0;
 }   
+
+
+// Enter number of processes: 5
+// Enter arrival time for process 1: 0
+// Enter burst time for process 1: 4
+// Enter arrival time for process 2: 1
+// Enter burst time for process 2: 3
+// Enter arrival time for process 3: 2
+// Enter burst time for process 3: 1
+// Enter arrival time for process 4: 3
+// Enter burst time for process 4: 2
+// Enter arrival time for process 5: 4
+// Enter burst time for process 5: 5

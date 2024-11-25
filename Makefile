@@ -1,3 +1,6 @@
+2:
+	gcc ./2-system-calls.c -o ./main.out -lm
+
 3:
 	gcc ./3-matrix-operations.c -o ./main.out -lm
 
@@ -13,6 +16,9 @@
 7:
 	gcc ./7-pc-semaphore.c -o ./main.out -lm
 
+8:
+	gcc ./8-diningPh-sem.c -o ./main.out -lm
+
 9:
 	gcc ./9-fcfs.c -o ./main.out -lm 
 
@@ -24,6 +30,9 @@
 
 12:
 	gcc ./12-round-robin.c -o ./main.out -lm
+
+13:
+	gcc ./13-deadlock-avoid-bankers.c -o ./main.out -lm
 
 15:
 	gcc ./15-fifo-page-fault.c -o ./main.out -lm 

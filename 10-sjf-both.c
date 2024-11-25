@@ -42,6 +42,22 @@ void sort_by_arrival_time (Process* p, int n) {
     }
 }
 
+void print_gantt_chart(int *schedule, int *timeline, int n) {
+    printf("\nGantt Chart:\n");
+
+    printf("\n|");
+    for (int i = 0; i < n; i++) {
+        printf(" P%-2d |", schedule[i]);
+    }
+
+    printf("\n");
+    for (int i = 0; i <= n; i++) {
+        printf("%-3d   ", timeline[i]);
+    }
+    printf("\n");
+}
+
+
 void print_table (Process* p, int n) {
     printf("\nProcess Table: \n");
     printf("+---------+---------+---------+---------+---------+---------+\n");
@@ -53,6 +69,7 @@ void print_table (Process* p, int n) {
         p[i].arrival_time, p[i].burst_time, p[i].completion_time,
         p[i].turnaround_time, p[i].waiting_time);
     }
+    printf("+---------+---------+---------+---------+---------+---------+\n");
 }
 
 void sjf (Process* p, int n) {
@@ -95,6 +112,7 @@ void sjf (Process* p, int n) {
         completed++;
     }
     timeline[schedule_index] = current_time;
+    print_gantt_chart(schedule, timeline, schedule_index);
 
 }
 
@@ -143,6 +161,8 @@ void srtf (Process* p, int n) {
         }
 
     }
+    print_gantt_chart(schedule, timeline, schedule_index);
+
 }
 
 
@@ -185,16 +205,3 @@ int main() {
 // | 4       | 6       | 1       | 8       | 2       | 1       |
 // | 5       | 8       | 2       | 10      | 2       | 0       |
 
-// void print_gantt_chart(int *schedule, int *timeline, int n) {
-//     printf("\nGantt Chart:\n");
-
-//     printf("\n|");
-//     for (int i = 0; i < n; i++) {
-//         printf(" P%-2d |", schedule[i]);
-//     }
-
-//     printf("\n");
-//     for (int i = 0; i <= n; i++) {
-//         printf("%-3d   ", timeline[i]);
-//     }
-// }
